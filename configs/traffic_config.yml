@@ -1,0 +1,16 @@
+# Configuration du trafic pour les slices URLLC et mMTC
+
+urllc:
+  lambda: 2000      # intensité moyenne (paquets/s) - exemple
+  packet_size_bytes: 200
+  max_delay_ms: 1.0
+  max_loss: 1e-5
+
+mmtc:
+  lambda_on: 5000   # intensité en phase ON
+  lambda_off: 100   # intensité en phase OFF
+  p_on: 0.1         # probabilité OFF -> ON
+  p_off: 0.3        # probabilité ON -> OFF
+  packet_size_bytes: 50
+  max_delay_ms: 1000.0
+  max_loss: 0.01

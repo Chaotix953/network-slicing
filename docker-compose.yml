@@ -1,0 +1,29 @@
+services:
+  ryu:
+    image: osrg/ryu
+    container_name: ryu
+    networks:
+      - sdn
+    ports:
+      - "6633:6633"
+      - "8080:8080"
+    volumes:
+      - ./ryu/apps:/apps
+    environment:
+      - PYTHONPATH=/apps
+    working_dir: /apps
+    command: ["ryu-manager", "--verbose", "--wsapi-port", "8080", "slice_switch_13"]
+  mininet:
+    image: iwaseyusuke/mininet:latest
+    container_name: mininet
+    privileged: true
+    volumes:
+      - /lib/modules:/lib/modules:ro
+    networks:
+      - sdn
+    depends_on:
+      - ryu
+
+networks:
+  sdn:
+    driver: bridge
