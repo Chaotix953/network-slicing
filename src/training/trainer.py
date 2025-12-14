@@ -226,7 +226,7 @@ class Trainer:
         callbacks = []
 
         # Metrics logging
-        callbacks.append(MetricsCallback(log_freq=100))
+        callbacks.append(MetricsCallback(log_freq=5000))
 
         # Checkpointing
         callbacks.append(CheckpointCallback(

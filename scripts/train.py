@@ -15,11 +15,12 @@ from pathlib import Path
 
 # Add project root to path
 project_root = Path(__file__).parent.parent
-sys.path.insert(0, str(project_root / "src"))
+sys.path.insert(0, str(project_root))  # <--- CHANGED: Removed / "src"
 
-from config import Config, load_config
-from training import Trainer
-from utils import set_seed, setup_logging
+# Imports must now include 'src.' prefix
+from src.config import Config, load_config
+from src.training import Trainer
+from src.utils import set_seed, setup_logging
 
 
 def parse_args():

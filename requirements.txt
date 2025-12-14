@@ -7,6 +7,7 @@ gymnasium
 stable-baselines3
 torch
 tqdm
+tensorboard
 
 # Réseau / SDN
 mininet

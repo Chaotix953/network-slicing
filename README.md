@@ -115,10 +115,6 @@ Note : certains tests d'intégration peuvent nécessiter Docker/Mininet/Ryu et p
 - Fork → branch → PR. Merci d'ajouter des tests pour les nouvelles fonctionnalités.
 - Ouvrir des issues pour bugs ou demandes d'amélioration.
 
-## Licence
-
-Aucun fichier `LICENSE` n'est présent. Si vous souhaitez publier ce dépôt sur GitHub, ajoutez un fichier `LICENSE` (ex. MIT, Apache-2.0) et ajoutez la mention correspondante ici.
-
 ## Comment push sur GitHub (rapide)
 
 ```bash
@@ -132,8 +128,3 @@ git branch -M main
 git push -u origin main
 ```
 
----
-
-Pour plus de détails opérationnels (scripts, debug, procédure Docker/Mn), voir `GUIDE_DEMARRAGE.md` et `CLAUDE.md`.
-
-Si tu veux, j'ajoute aussi un `LICENSE` (MIT par défaut) et des badges CI/coverage. Veux-tu que je le fasse maintenant ?
