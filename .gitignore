@@ -1,0 +1,117 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+.coverage
+.coverage.*
+.cache
+.pytest_cache/
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# pyenv
+.python-version
+
+# mypy
+.mypy_cache/
+
+# IDEs and editors
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Logs and database
+logs/
+*.log
+*.sqlite3
+
+# Results, checkpoints, and large data
+data/checkpoints/
+results_raw/
+traffic_samples/
+
+# Model files and artifacts
+*.pt
+*.pth
+*.ckpt
+*.h5
+model_weights/
+
+# Ryu / Mininet runtime files
+mininet/
+ryu/*.pyc
+
+# Docker
+docker-compose.override.yml
+.docker/
+
+# Environment / secrets
+.env
+*.env
+secrets/
+
+# Misc
+*.zip
+*.tar.gz
+*.egg
+
+# Coverage and reports
+htmlcov/
+coverage/
+
+# Editor temporary files
+*~
+*.swp
+
+# keep README and guides tracked
+!GUIDE_DEMARRAGE.md
+!CLAUDE.md
