@@ -1,0 +1,13 @@
+numpy
+scipy
+matplotlib
+pandas
+pyyaml
+gymnasium
+stable-baselines3
+torch
+tqdm
+
+# Réseau / SDN
+mininet
+ryu

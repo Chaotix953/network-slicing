@@ -1,0 +1,107 @@
+# Default configuration for 5G Network Slicing DRL
+# This file configures all aspects of the training pipeline
+
+experiment_name: "default"
+
+# Environment configuration
+env:
+  max_steps: 1000
+  dt_s: 0.1
+  obs_high: 2.0
+
+  # Reward weights (positive contributions)
+  w_urllc: 10.0      # URLLC SLA weight (prioritized)
+  w_mmtc: 2.0        # mMTC SLA weight
+  w_balance: 0.5     # Balance bonus
+
+  # Penalty coefficients
+  alpha_urllc: 50.0  # URLLC violation penalty (strict)
+  alpha_mmtc: 5.0    # mMTC violation penalty
+  alpha_smooth: 0.1  # Action smoothness penalty
+
+  # SLA thresholds
+  sla:
+    urllc_max_delay_ms: 1.0      # URLLC: <= 1ms latency
+    urllc_max_loss: 0.00001      # URLLC: <= 0.001% loss
+    mmtc_max_delay_ms: 1000.0    # mMTC: <= 1000ms latency
+    mmtc_max_loss: 0.01          # mMTC: <= 1% loss
+
+  # Traffic reference (for normalization)
+  traffic:
+    urllc_lambda: 2000.0         # packets/s
+    urllc_packet_size: 200       # bytes
+    mmtc_lambda_on: 5000.0       # packets/s (ON state)
+    mmtc_lambda_off: 100.0       # packets/s (OFF state)
+    mmtc_p_on: 0.1               # OFF -> ON probability
+    mmtc_p_off: 0.3              # ON -> OFF probability
+    mmtc_packet_size: 50         # bytes
+
+# Agent configuration
+agent:
+  algorithm: "ppo"  # Options: ppo, sac, td3, baseline_fixed, baseline_priority
+
+  # PPO hyperparameters
+  ppo:
+    learning_rate: 0.0003
+    n_steps: 2048
+    batch_size: 64
+    n_epochs: 10
+    gamma: 0.99
+    gae_lambda: 0.95
+    clip_range: 0.2
+    ent_coef: 0.01
+    vf_coef: 0.5
+    max_grad_norm: 0.5
+
+  # SAC hyperparameters
+  sac:
+    learning_rate: 0.0003
+    buffer_size: 100000
+    learning_starts: 1000
+    batch_size: 256
+    tau: 0.005
+    gamma: 0.99
+    train_freq: 1
+    gradient_steps: 1
+    ent_coef: "auto"
+
+  # TD3 hyperparameters
+  td3:
+    learning_rate: 0.0003
+    buffer_size: 100000
+    learning_starts: 1000
+    batch_size: 256
+    tau: 0.005
+    gamma: 0.99
+    train_freq: 1
+    gradient_steps: 1
+    policy_delay: 2
+    target_policy_noise: 0.2
+    target_noise_clip: 0.5
+
+  # Baseline parameters
+  baseline_beta: 0.5
+  baseline_latency_threshold: 2.0
+
+# Training configuration
+training:
+  total_timesteps: 100000
+  eval_freq: 10000
+  n_eval_episodes: 10
+  save_freq: 10000
+  log_interval: 10
+  seed: null
+  deterministic: false
+
+  # Directories
+  log_dir: "logs"
+  checkpoint_dir: "checkpoints"
+  tensorboard_dir: "tensorboard"
+
+# Network infrastructure
+network:
+  ryu_base_url: "http://localhost:8080"
+  link_capacity_mbps: 100.0
+  timeout_s: 2.0
+  congestion_threshold: 0.85
+  stats_interval_s: 5.0

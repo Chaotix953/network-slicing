@@ -1,0 +1,18 @@
+# Configuration simplifiée du réseau Mininet / Ryu
+
+link:
+  capacity_mbps: 100.0
+
+queues:
+  urllc:
+    min_rate_mbps: 10.0
+    max_rate_mbps: 90.0
+    priority: 1
+  mmtc:
+    min_rate_mbps: 1.0
+    max_rate_mbps: 90.0
+    priority: 0
+
+ryu:
+  app_name: "slicing_qos_controller"
+  listen_port: 6633
