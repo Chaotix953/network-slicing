@@ -297,13 +297,21 @@ class SlicingEnv(gym.Env):
         # Get metrics from network
         metrics = self._nil.get_metrics()
 
+        # Conversion du débit (Mbps) en paquets/s pour l'observation
+        # (Nécessite de connaître la taille moyenne des paquets, ex: 200 et 50 octets)
+        pkt_size_1 = 200 * 8  # bits
+        pkt_size_2 = 50 * 8   # bits
+        
+        real_lambda1 = (metrics.throughput_urllc * 1e6) / pkt_size_1
+        real_lambda2 = (metrics.throughput_mmtc * 1e6) / pkt_size_2
+
         return {
             "d1_ms": metrics.delay_urllc,
             "p1": metrics.loss_urllc,
             "d2_ms": metrics.delay_mmtc,
             "p2": metrics.loss_mmtc,
-            "lambda1": self._lambda1_ref,  # Estimated from config
-            "lambda2": self._lambda2_ref,
+            "lambda1": real_lambda1 if real_lambda1 > 0 else 0.0,
+            "lambda2": real_lambda2 if real_lambda2 > 0 else 0.0,
             "rho1": 0.0,  # Not directly available
             "rho2": 0.0,
             "throughput_urllc": metrics.throughput_urllc,

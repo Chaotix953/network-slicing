@@ -89,16 +89,16 @@ class Evaluator:
 
         # Compute statistics
         results = {
-            "mean_reward": np.mean(episode_rewards),
-            "std_reward": np.std(episode_rewards),
-            "min_reward": np.min(episode_rewards),
-            "max_reward": np.max(episode_rewards),
-            "mean_length": np.mean(episode_lengths),
-            "mean_viol_urllc": np.mean(sla_violations_urllc),
-            "mean_viol_mmtc": np.mean(sla_violations_mmtc),
-            "total_viol_urllc": np.sum(sla_violations_urllc),
-            "total_viol_mmtc": np.sum(sla_violations_mmtc),
-            "n_episodes": n_eps,
+            "mean_reward": float(np.mean(episode_rewards)),      # <--- float(...)
+            "std_reward": float(np.std(episode_rewards)),        # <--- float(...)
+            "min_reward": float(np.min(episode_rewards)),        # <--- float(...)
+            "max_reward": float(np.max(episode_rewards)),        # <--- float(...)
+            "mean_length": float(np.mean(episode_lengths)),      # <--- float(...)
+            "mean_viol_urllc": float(np.mean(sla_violations_urllc)), # <--- float(...)
+            "mean_viol_mmtc": float(np.mean(sla_violations_mmtc)),   # <--- float(...)
+            "total_viol_urllc": int(np.sum(sla_violations_urllc)),   # <--- int(...)
+            "total_viol_mmtc": int(np.sum(sla_violations_mmtc)),     # <--- int(...)
+            "n_episodes": int(n_eps),                                # <--- int(...)
         }
 
         # Store results
