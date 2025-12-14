@@ -360,6 +360,13 @@ class SlicingEnv(gym.Env):
         d2_ratio = metrics["d2_ms"] / self._d2_max_ms
         p2_ratio = metrics["p2"] / self._p2_max if self._p2_max > 0 else 0.0
 
+        # Borner les ratios pour éviter l'explosion mathématique
+        # On limite le ratio à 20x le SLA maximum
+        d1_ratio = min(d1_ratio, 20.0) 
+        p1_ratio = min(p1_ratio, 20.0)
+        d2_ratio = min(d2_ratio, 20.0)
+        p2_ratio = min(p2_ratio, 20.0)
+
         # SLA margins (positive = meeting SLA, negative = violating)
         margin_d1 = max(0.0, 1.0 - d1_ratio)
         margin_p1 = max(0.0, 1.0 - p1_ratio)

@@ -32,6 +32,23 @@ Remarque : certains composants (Mininet, Ryu) sont généralement exécutés en 
 
 ## Exemples d'utilisation
 
+## Scripts utiles
+
+Un script pratique est fourni dans `scripts/start_env.sh` pour initialiser rapidement l'environnement de développement :
+
+```bash
+# Créer/activer venv, installer dépendances, démarrer docker-compose et copier le contrôleur Ryu
+./scripts/start_env.sh
+
+# Options utiles :
+#  --no-docker    : ne lance pas Docker Compose
+#  --no-ryu-copy  : n'essaie pas de copier ryu/apps/slice_switch_13.py dans le conteneur 'ryu'
+#  --no-venv      : ne crée/active pas l'environnement virtuel ni n'installe les dépendances
+```
+
+Ce script est idempotent et utile pour préparer rapidement une machine de développement.
+
+
 ### Entraînement en mode simulation (pas de Ryu requis)
 
 ```bash
@@ -127,4 +144,9 @@ git remote add origin git@github.com:utilisateur/repo.git
 git branch -M main
 git push -u origin main
 ```
+
+
+## Licence
+
+Ce dépôt est publié sous licence MIT. Voir le fichier `LICENSE` à la racine du projet. Pensez à mettre à jour le copyright dans `LICENSE`.
 
